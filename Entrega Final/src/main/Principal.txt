@@ -1,0 +1,233 @@
+//Nome: Stefano Calheiros Stringhini - RA: 2312123
+
+
+public class Principal {
+
+    public static void main(String arg[]) {
+        Entrada e = new Entrada();
+        Medicamento m = new Medicamento();
+        Outros o = new Outros();
+        Medmanipulado a = new Medmanipulado();
+        int selec;
+
+        boolean valEscolha = false;
+        boolean valEscolha2 = false;
+        boolean valEscolha3 = false;
+	    boolean continua = true;
+        int descEscolha = 0;
+
+        while (!valEscolha) {
+            try {
+                System.out.println("\nO que você deseja fazer?\n");
+                selec = Integer.parseInt(e.Leitura("\n1- Cadastrar Produto.\n2- Visualizar dados cadastrados.\n3- Finalizar o Programa.\n"));
+                System.out.println("\nok...");
+                switch (selec) {
+                    case 1: // Cadastrar produto
+                        System.out.println("Sistema de Cadastro de produtos\n----------------------------\n");
+                        e.Leitura("Pressione <Enter> para iniciar\n");
+
+                        while (!valEscolha2) {
+
+                            System.out.println("\nEscolha o que quer cadastrar:\n");
+                            selec = Integer.parseInt(e.Leitura("\n1- Medicamento\n2- Outros\n3- Parar Cadastro\n"));
+                            switch (selec) {
+                                case 1: // Cadastro medicamento
+                                    //Tratamento de exceção
+                                    selec= Integer.parseInt(e.Leitura("\nEscolha:\n1- Medicamento\n2- Medicamento Manipulado\n"));
+                                    try{
+                                        switch (selec){
+                                            case 1: //Cadastro Medicamento
+                                    m.setNome(e.Leitura("\nNome: "));
+                                    m.setNomeClinico(e.Leitura("\nNome Clinico: "));
+                                    m.setComposicao(e.Leitura("\nComposicao: "));
+                                    m.setPeriodoUso((e.Leitura("\nPeriodo de Uso: ")));
+                                    m.setPublicoAlvo(e.Leitura("\nPublico Alvo: "));
+                                    m.setSitRecomenda(e.Leitura("\nSintomas Recomendados: "));
+                                    m.setValidade(e.Leitura("\nValidade (coloque na forma 29/04/2022): "));
+                                    m.setDisponibilidade(e.Leitura("\nDisponibilidade: "));
+
+                                    //Tratamento de exceção
+                                    while (continua) {
+                                        try {
+                                            m.setCodigoBarra(Integer.parseInt(e.Leitura("\nCodigo de Barra: ")));
+                                            m.setMiligramas(Integer.parseInt(e.Leitura("\nMiligramas (apenas números): ")));
+                                            m.setPreco(Integer.parseInt(e.Leitura("\nPreco: ")));
+                                            do {
+                                                descEscolha = Integer.parseInt(e.Leitura("\nEste medicamento tera desconto de 10%?\n1- Sim\n0- Nao\n"));
+                                            } while (descEscolha < 0 || descEscolha > 1);
+                                            continua = false;
+                                        } catch (NumberFormatException ne) {
+                                            System.out.println("\nERRO: Entrada - Entre apenas com numeros inteiros");
+                                        }
+                                    }continua = true;
+                                    break;
+                                            case 2: //Cadastro Medicamento Manipulado
+
+                                    a.setNome(e.Leitura("\nNome:"));
+                                    a.setNomeClinico(e.Leitura("\nNome Clinico: "));
+                                    a.setComposicao(e.Leitura("\nComposicao: "));
+                                    a.setPeriodoUso((e.Leitura("\nPeriodo de Uso: ")));
+                                    a.setPublicoAlvo(e.Leitura("\nPublico Alvo: "));
+                                    a.setSitRecomenda(e.Leitura("\nSintomas Recomendados: "));
+                                    a.setValidade(e.Leitura("\nValidade (coloque na forma 29/04/2022): "));
+                                    a.setDisponibilidade(e.Leitura("\nDisponibilidade: "));
+                                    //Tratamento de exceção
+                                    while (continua) {
+                                        try {
+                                            a.setCodigoBarra(Integer.parseInt(e.Leitura("\nCodigo de Barra: ")));
+                                            a.setMiligramas(Integer.parseInt(e.Leitura("\nMiligramas (apenas números): ")));
+                                            a.setPreco(Integer.parseInt(e.Leitura("\nPreco: ")));
+                                            do {
+                                                descEscolha = Integer.parseInt(e.Leitura("\nEste medicamento tera desconto de 10%?\n1- Sim\n0- Nao\n"));
+                                            } while (descEscolha < 0 || descEscolha > 1);
+                                            continua = false;
+                                        } catch (NumberFormatException ne) {
+                                            System.out.println("\nERRO: Entrada - Entre apenas com numeros inteiros");
+                                        }}continua = true;
+                                    System.out.println("\n Insira dados do paciente:\n");
+
+                                    a.setNomecliente(e.Leitura("\nNome do Cliente:"));
+                                    while (continua) {
+                                        try {
+                                            a.setCpf(Integer.parseInt(e.Leitura("\nCPF do Cliente(Somente numeros):")));
+                                            continua = false;
+                                        } catch (NumberFormatException ne) {
+                                            System.out.println("\nERRO: Entrada - Entre apenas com numeros inteiros");
+                                        }}continua=true;
+                                    a.setAtivo(e.Leitura("\nAtivo:"));
+                                    a.setFormula(e.Leitura("\nFormula:"));
+                                    a.setCRM(e.Leitura("\nCRM do Medico:"));
+
+                                    break;}
+                                    System.out.println("\n\n---Produto cadastrado!---");
+
+                                    break;
+
+                                    } catch (NumberFormatException ne) {
+                                        System.out.println("\nERRO: Entrada - Entre apenas com numeros inteiros");
+                                    }
+                                case 2: // Cadastro outros
+
+                                    o.setNome(e.Leitura("\nNome:"));
+                                    o.setTipo(e.Leitura("\nTipo: "));
+                                    //Tratamento de exceção
+                                    while (continua){
+                                        try {
+                                            m.setCodigoBarra(Integer.parseInt(e.Leitura("\nCodigo de Barra: ")));
+                                            o.setPeso(Integer.parseInt(e.Leitura("\nPeso(em gramas): ")));
+                                            o.setPreco(Integer.parseInt(e.Leitura("\nPreco: ")));
+                                            continua = false;
+                                        }catch (NumberFormatException ne){
+                                            System.out.println("\nERRO: Entrada - Entre apenas com numeros inteiros");
+                                        }
+                                        }
+                                    o.setValidade(e.Leitura("\nValidade (coloque na forma 29/04/2022): "));
+                                    o.setDisponibilidade(e.Leitura("\nDisponibilidade: "));
+
+                                    System.out.println("\n\n---Produto cadastrado!---");
+
+                                    break;
+
+                                case 3:
+                                    System.out.println("\nParaanndoooo...");
+
+                                    valEscolha2 = true;
+
+                                    break;
+
+                                default:
+                                    System.out.println("---ERROR!---\n(Entrada Invalida)");
+                                    valEscolha2 = false;
+                            }
+                        }break;
+
+                    case 2: // Visualizar dados cadastrados
+                        System.out.println("Sistema de Vizualização de produtos\n----------------------------\n");
+                        e.Leitura("Pressione <Enter> para iniciar\n");
+                        while (!valEscolha3) {
+                            System.out.println("\nEscolha o que quer vizualizar:\n");
+                            selec = Integer.parseInt(e.Leitura("\n1- Medicamento\n2- Medicamento Manipulado\n3- Outros\n4- Parar Vizualização\n"));
+                            switch (selec) {
+                                case 1: //Vizualização medicamento
+                                    System.out.println("\n\n\tProduto Cadastrado:");
+                                    System.out.println("\nNome:" + m.getNome());
+                                    System.out.println("\nCodigo de Barra: " + m.getCodigoBarra());
+                                    System.out.println("\nNome CLinico: " + m.getNomeClinico());
+                                    System.out.println("\nComposição: " + m.getComposicao());
+                                    System.out.println("\nMiligramas: " + m.getMiligramas());
+                                    System.out.println("\nPeriodo de Uso: " + m.getPeriodoUso());
+                                    System.out.println("\nPublico Alvo:" + m.getPublicoAlvo());
+                                    System.out.println("\nSintomas Recomendados: " + m.getSitRecomenda());
+                                    if (descEscolha == 1) {
+                                        System.out.println("\nPreço: " + m.desconto());
+                                    } else {
+                                        System.out.println("\nPreço: " + m.getPreco());
+                                    }
+                                    System.out.println("\nValidade: " + m.getValidade());
+                                    System.out.println("\nDisponibilidade: " + m.getDisponibilidade());
+
+                                    System.out.println("\n\n---Vizualização Completa!---");
+
+                                    break;
+                                case 2: //Vizualização Medicamento Manipulado
+                                    System.out.println("\n\n\tProduto Cadastrado:");
+                                    System.out.println("\nNome:" + a.getNome());
+                                    System.out.println("\nCodigo de Barra: " + a.getCodigoBarra());
+                                    System.out.println("\nNome CLinico: " + a.getNomeClinico());
+                                    System.out.println("\nComposição: " + a.getComposicao());
+                                    System.out.println("\nMiligramas: " + a.getMiligramas());
+                                    System.out.println("\nPeriodo de Uso: " + a.getPeriodoUso());
+                                    System.out.println("\nPublico Alvo:" + a.getPublicoAlvo());
+                                    System.out.println("\nSintomas Recomendados: " + a.getSitRecomenda());
+                                    if (descEscolha == 1) {
+                                        System.out.println("\nPreço: " + a.desconto());
+                                    } else {
+                                        System.out.println("\nPreço: " + a.getPreco());
+                                    }
+                                    System.out.println("\nValidade: " + a.getValidade());
+                                    System.out.println("\nDisponibilidade: " + a.getDisponibilidade());
+                                    System.out.println("\nNome do Cliente: " + a.getNomeCliente());
+                                    System.out.println("\nCPF do Cliente: " + a.getCPF());
+                                    System.out.println("\nAtivo:" + a.getAtivo());
+                                    System.out.println("\nFormula: " + a.getFormula());
+                                    System.out.println("\nCRM do medico: " + a.getCRM());
+
+                                    break;
+                                case 3:  //Vizualização Outros
+                                    System.out.println("\n\n\tProduto Cadastrado:");
+                                    System.out.println("\nNome:" + o.getNome());
+                                    System.out.println("\nCodigo de Barra: " + o.getCodigoBarra());
+                                    System.out.println("\nTipo: " + o.getTipo());
+                                    System.out.println("\nPeso(em gramas): " + o.getPeso());
+                                    System.out.println("\nPreço: " + o.getPreco());
+                                    System.out.println("\nValidade: " + o.getValidade());
+                                    System.out.println("\nDisponibilidade: " + o.getDisponibilidade());
+
+                                    System.out.println("\n\n---Vizualização Completa!---");
+
+                                    break;
+
+                                case 4:
+                                    System.out.println("\nParaanndoooo...");
+                                    valEscolha3 = true;
+
+                                    break;
+
+                                default:
+                                    System.out.println("---ERROR!---\n(Entrada Invalida)");
+                                    valEscolha3 = false;
+
+                            }
+
+                        }
+                    case 3:
+                        System.out.println("Desligaaandooo....");
+                        valEscolha = true;
+                        break;
+                }
+            }catch (NumberFormatException ne) {
+                System.out.println("\nERRO: Entrada - Entre apenas com numeros inteiros");
+            }
+        }
+    }
+}
